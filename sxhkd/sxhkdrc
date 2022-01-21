@@ -1,0 +1,175 @@
+
+                                                       ##---------- Keybindings for bspwm ----------##
+
+# Terminal (alacritty)
+super + Return
+	alacritty
+
+# Dmenu App Launcher
+super + d
+  dmenu_recency
+
+# xwallpaper/nsxiv
+super + shift + W
+ nsxiv -b -t * $HOME/Pictures/wallpapers/images
+
+# Torrent
+super + shift + T
+  qbittorrent
+
+# Session Messenger
+super + shift + s 
+ $HOME/Public/App_Images/session-desktop-linux-x86_64-1.7.6.AppImage
+
+# Neovim
+super + v
+ alacritty -e nvim
+
+# Launch Apps
+super + p
+	pcmanfm
+
+# Launch Browser 
+super + w 
+  brave --use-gl=desktop --enable-features=VaapiVideoDecoder --disable-features=UseOzonePlatform
+
+# X11-color-picker
+super + shift + c
+  $HOME/Public/scripts/xcp
+
+# Terminal Apps
+super + shift + p
+  ~/.config/polybar/launch.sh
+
+# gammastep
+super + g 
+  killall gammastep
+
+super + shift + g 
+  exec gammastep
+
+# galculator
+super + ctrl + g
+ galculator
+
+# screenshot
+super + Print
+	scrot '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/'
+	
+# Brighness control
+XF86MonBrightness{Up,Down}
+	brightness{ --inc, --dec}
+
+# Close App
+super + q
+ bspc node -c
+
+# quit the session
+super + ctrl + Print
+ bspc {quit}
+
+# Restart The System
+super + ctrl + Delete
+  doas reboot
+
+# Kill A Program
+super + ctrl + shift + K
+ exec xkill
+
+# hibernate The System
+super + ctrl + F1
+ systemctl hibernate
+
+# restart the session
+super + shift + r
+  bspc wm -r
+
+# Toggle fullscreen on and off
+super + f
+  bspc node -t fullscreen || bspc node -t tiled
+
+# Toggle floating on and off
+super + shift + f
+   bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# expand a window by moving one of its side outward
+super + ctrl + {h,j,k,l}
+ {bspc node -z right -20 0; \
+ bspc node -z left +20 0, \
+ bspc node -z top 0 -20; \
+ bspc node -z bottom 0 +20, \
+ bspc node -z top 0 +20; \
+ bspc node -z bottom 0 -20, \
+ bspc node -z right +20 0; \
+ bspc node -z left -20 0}
+
+#super + ctrl + {h,j,k,l}
+#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0 right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# pulseaudio
+super + shift + V
+ pavucontrol
+
+# dunst
+#super + x
+# --release exec "killall dunst; exec notify-send 'restart dunst'"
+
+# ncmpcpp
+super + m
+	alacritty -e ncmpcpp
+
+# gotop
+super + t
+ alacritty -e gotop
+
+# Ranger 
+super + r
+  alacritty -e ranger 
+
+# Send to desktop
+super + shift + {1-9,0}
+    bspc node -d '^{1-9,10}' --follow 
+
+# focus between workspaces
+super + {1-9,0}
+    desktop='^{1-9,10}'; \
+    bspc query -D -d "$desktop.focused" && bspc desktop -f last || bspc desktop -f "$desktop"
+
+#super + {1-9,0}
+#   bspc {desktop -f focused:'^{1-9,10}'
+
+# focus or send to the given desktop
+super + ctrl {1-9,0}
+	 bspc node -d focused:'^{1-9,10}'
+
+#cycle between workspaces
+super + n
+ bspc desktop -f {next}.local
+
+super + b
+ bspc desktop -f {prev}.local
+
+# Select windows and send them to the next workspace
+super + {_,shift + }n
+    bspc node -f {next,prev}.local
+
+# move floating window
+super + alt + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# volume up
+super + F12
+   pamixer --allow-boost -i 5
+
+# volume down
+super + F11
+  pamixer -d 5
+
+# Mute
+super + F10
+   pamixer -t 
+
