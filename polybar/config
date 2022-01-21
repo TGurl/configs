@@ -1,0 +1,314 @@
+
+## Colors ##
+
+[colors]
+background = #7FA094
+foreground = #FFFFFF
+
+#background = #7E9191
+#background = #7FA094
+#background = #828E93
+#background = #919191
+#background = #839191
+#background = #819191
+
+## Bar Settings ##
+
+[bar/example]
+width = 100%
+height = 14
+radius = 0.0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+border-top-size = 0
+border-bottom-size = 1
+border-color = #1B2224
+
+padding = 0
+module-margin = 0
+
+## Fonts ##
+
+font-0 = "Mononoki Nerd Font:pixelsize=9;2:antialias=true:autohint=true"
+font-1 = "Iosevka Nerd Font:size=9;2:antialias=true:autohint=true"
+font-2 = "Terminus:size=8;2:antialias=true:autohint=true"
+
+## bspwm Config ##
+
+modules-left = bspwm search xwindow
+modules-center = 
+modules-right = wired-network wlan arch-aur-updates simple-weather pulseaudio cpu temperature date
+
+separator = |
+separator-background = #141a1b
+
+tray-position = right
+tray-padding = 0
+
+scroll-up = bspc desktop -f prev.local
+scroll-down = bspc desktop -f next.local
+
+wm-name = bspwm
+wm-restack = bspwm
+enable-ipc = true
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+## Xwindow ##
+
+[module/xwindow]
+type = internal/xwindow
+
+label = [%title:0:68:%]
+label-padding-left = 1
+label-padding-right = 0
+label-empty-padding-left = 1
+label-empty-padding-right = 1
+label-empty = [Manjaro Gnu/linux | kernel 5.4.169-1-lts]
+
+label-empty-foreground = #000000
+format-foreground = #000000
+
+## WorkSpaces ##
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = false
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+fuzzy-match = true
+
+#ls-icon-0 = 1;
+ls-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3; 
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-8 = 8;
+ws-icon-9 = 9;
+ws-icon-default = 
+#  
+
+format = <label-state>
+format-font = 2
+label-monitor = %name%
+
+# %index%
+label-focused = %name% 
+label-focused-background = ${colors.background}
+label-focused-underline = #141a1b
+label-focused-padding = 2
+
+label-occupied = '%name%
+label-occupied-foreground = ${color.GREEN}
+label-occupied-background = #141a1b
+;label-occupied-underline = ${color.GREEN}
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = ${color.RED}
+label-urgent-background = ${color.BACKGROUND}
+label-urgent-underline = ${color.RED}
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-foreground = ${color.FOREGROUND}
+label-empty-background = #141a1b
+label-empty-padding = 2
+
+; Separator in between workspaces
+label-separator = 
+label-separator-padding = 0
+label-separator-foreground = ${color.ALTBLACK}
+
+## Cpu Load ##
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-padding-right = 0
+label = %percentage:2%%
+format-foreground = #DEDDDA
+format-background = #141a1b
+format-padding = 1
+
+## Date and Time ##
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = 
+date-alt = %A %B %e %Y|
+
+#time =  %H:%M:%S |
+time =  %I:%M %p |
+#time =  %H:%M |
+time-alt =
+
+label = %date% %time%
+label-foreground = #DEDDDA
+label-background = #141a1b
+label-padding = 1
+label-padding-left = 0
+label-padding-right = 1
+
+## Audio ##
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume =  <label-volume>
+label-volume = %percentage%%
+format-volume-foreground = #DEDDDA
+format-volume-background = #141a1b
+format-volume-padding = 1
+click-right = pavucontrol
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+ramp-volume-6 = 
+ramp-volume-7 = 
+ramp-volume-8 = 
+ramp-volume-9 = 
+ramp-volume-font = 2
+#format-volume = <ramp-volume> <label-volume>
+
+label-muted =  muted
+format-muted-foreground = #0A0D0C
+format-muted-background = ${colors.background}
+format-muted-padding = 1
+
+## Cpu Temperature ##
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 200
+
+format = <ramp> <label>
+format-background = #141a1b
+format-warn = <ramp> <label-warn>
+format-warn-foreground = #DEDDDA
+format-foreground = #DEDDDA
+format-padding = 1
+format-warn-padding = 1
+label = %temperature-c%
+label-warn = %temperature-c%
+interval = 2
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+
+## Other Setting ##
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+## wired-network ##
+
+[module/wired-network]
+type = internal/network
+interface = enp3s0
+interval = 1
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+format-connected-background = #141a1b
+format-disconnected-background = #141a1b
+label-connected-foreground = #DEDDDA
+
+format-connected-padding = 0
+format-disconnected-padding = 0
+label-connected-padding-right = 1
+label-disconnected-padding-right = 1
+#label-connected-padding-right = 
+
+label-connected = | %{A1:nm-connection-editor:}  %downspeed%%{A}
+#label-connected = | %{A1:nm-connection-editor:}%  %downspeed%{A}
+
+## wifi/down and up speed ##
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 1
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+format-connected-background = #141a1b
+format-disconnected-background = #141a1b
+format-connected-padding = 0
+label-disconnected-padding = 0
+
+label-connected-padding-right = 1
+label-disconnected-padding-right = 1
+label-connected = | %{A1:nm-connection-editor:}  %downspeed%%{A}
+label-disconnected = | %{A1:nm-connection-editor:}睊  %downspeed%%{A}
+#label-connected = | %{A1:nm-connection-editor:}  %downspeed% %upspeed%%{A}
+#label-connected = | %{A1:nm-connection-editor:}   %downspeed%  %upspeed%%{A}
+
+
+## Pacman and Aur Updates ##
+
+[module/arch-aur-updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/check-all-updates.sh
+interval = 34000
+label = %{A1:alacritty -e ~/Public/scripts/pkg:} :%output%%{A}
+label-padding = 1
+format-foreground = #DEDDDA
+format-background = #141a1b
+#format-prefix = "  "
+format-prefix-foreground = #DEDDDA
+
+## Weather-better ##
+
+[module/simple-weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/simple-weather.sh
+format-background = #141a1b
+interval = 3600
+label-padding = 1
+#label-font = 3
+
+## Search ## 
+
+[module/search]
+type = custom/script 
+exec = echo []=
+format-background = #141a1b
+click-left = ~/.config/polybar/scripts/search.sh
+
+#  
+# " "
+
