@@ -1,0 +1,18 @@
+source ~/.config/zsh-source/zsh-aliases 
+source ~/.config/zsh-source/zsh-prompt
+source ~/.config/zsh-source/zsh-vimode
+source ~/.config/zsh-source/zsh-fzf
+source ~/.config/zsh-source/zsh-completion
+source ~/.config/zsh-source/zsh-extract
+source ~/.config/zsh-source/zsh-termsupport
+source ~/.config/x11/.zprofile
+source ~/Public/git-box/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/Public/git-box/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+HISTFILE=~/.config/zsh-source/zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Neofech
+#~/Public/scripts/neofetch --ascii_distro arch_small
+#~/Public/scripts/neofetch --ascii_distro manjaro
+#~/Public/scripts/neofetch --ascii_distro arch
