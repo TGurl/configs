@@ -1,0 +1,3 @@
+#!/bin/sh
+
+~/Public/scripts/pass-gen.py | xclip -selection clipboard

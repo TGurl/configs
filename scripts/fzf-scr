@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ du -a ~/Public/scripts | awk '{print $2 }' | fzf --prompt="> select a script: " --border --multi --reverse --border --preview='head -$LINES {}' --height 70% | xargs -r $EDITOR
+
