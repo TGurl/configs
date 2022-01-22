@@ -1,1 +1,1 @@
-# configs
+# our configs for bspwm 
