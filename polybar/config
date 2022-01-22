@@ -3,6 +3,7 @@
 
 [colors]
 background = #7FA094
+background-alt = #141a1b
 foreground = #FFFFFF
 
 #background = #7E9191
@@ -20,13 +21,13 @@ height = 14
 radius = 0.0
 fixed-center = true
 background = ${colors.background}
+background-alt = ${colors.background-alt}
 foreground = ${colors.foreground}
 
 border-size = 0
 border-top-size = 0
 border-bottom-size = 1
 border-color = #1B2224
-
 padding = 0
 module-margin = 0
 
@@ -43,33 +44,38 @@ modules-center =
 modules-right = wired-network wlan arch-aur-updates simple-weather pulseaudio cpu temperature date
 
 separator = |
-separator-background = #141a1b
+separator-background = ${colors.background-alt}
 
 tray-position = right
 tray-padding = 0
-
 scroll-up = bspc desktop -f prev.local
 scroll-down = bspc desktop -f next.local
-
 wm-name = bspwm
 wm-restack = bspwm
 enable-ipc = true
-
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+## Other Setting ##
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
 
 ## Xwindow ##
 
 [module/xwindow]
 type = internal/xwindow
 
-label = [%title:0:68:%]
+label = [%title:0:64:%]
 label-padding-left = 1
 label-padding-right = 0
 label-empty-padding-left = 1
 label-empty-padding-right = 1
 label-empty = [Manjaro Gnu/linux | kernel 5.4.169-1-lts]
-
 label-empty-foreground = #000000
 format-foreground = #000000
 
@@ -107,24 +113,22 @@ label-monitor = %name%
 # %index%
 label-focused = %name% 
 label-focused-background = ${colors.background}
-label-focused-underline = #141a1b
+label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
 
 label-occupied = '%name%
-label-occupied-foreground = ${color.GREEN}
-label-occupied-background = #141a1b
-;label-occupied-underline = ${color.GREEN}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.background-alt}
 label-occupied-padding = 2
 
 label-urgent = %name%
-label-urgent-foreground = ${color.RED}
-label-urgent-background = ${color.BACKGROUND}
-label-urgent-underline = ${color.RED}
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background-alt}
 label-urgent-padding = 2
 
 label-empty = %name%
-label-empty-foreground = ${color.FOREGROUND}
-label-empty-background = #141a1b
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.background-alt}
 label-empty-padding = 2
 
 ; Separator in between workspaces
@@ -140,8 +144,8 @@ interval = 2
 format-prefix = " "
 format-prefix-padding-right = 0
 label = %percentage:2%%
-format-foreground = #DEDDDA
-format-background = #141a1b
+format-foreground = ${colors.foreground}
+format-background = ${colors.background-alt}
 format-padding = 1
 
 ## Date and Time ##
@@ -150,20 +154,18 @@ format-padding = 1
 type = internal/date
 interval = 1
 
-date = 
+time =  %I:%M %p |
 date-alt = %A %B %e %Y|
 
-#time =  %H:%M:%S |
-time =  %I:%M %p |
-#time =  %H:%M |
-time-alt =
-
 label = %date% %time%
-label-foreground = #DEDDDA
-label-background = #141a1b
+label-foreground = ${colors.foreground}
+label-background = ${colors.background-alt}
 label-padding = 1
-label-padding-left = 0
 label-padding-right = 1
+label-padding-left = 0
+
+#time =  %H:%M:%S |
+#time =  %H:%M |
 
 ## Audio ##
 
@@ -172,8 +174,8 @@ type = internal/pulseaudio
 
 format-volume =  <label-volume>
 label-volume = %percentage%%
-format-volume-foreground = #DEDDDA
-format-volume-background = #141a1b
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background-alt}
 format-volume-padding = 1
 click-right = pavucontrol
 
@@ -203,10 +205,10 @@ thermal-zone = 0
 warn-temperature = 200
 
 format = <ramp> <label>
-format-background = #141a1b
 format-warn = <ramp> <label-warn>
-format-warn-foreground = #DEDDDA
-format-foreground = #DEDDDA
+format-background = ${colors.background-alt}
+format-warn-foreground = ${colors.foreground}
+format-foreground = ${colors.foreground}
 format-padding = 1
 format-warn-padding = 1
 label = %temperature-c%
@@ -225,15 +227,6 @@ ramp-8 = 
 ramp-9 = 
 ramp-font = 2
 
-## Other Setting ##
-
-[settings]
-screenchange-reload = true
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
-
 ## wired-network ##
 
 [module/wired-network]
@@ -243,9 +236,13 @@ interval = 1
 
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
-format-connected-background = #141a1b
-format-disconnected-background = #141a1b
-label-connected-foreground = #DEDDDA
+
+label-connected = | %{A1:nm-connection-editor:}  %downspeed%%{A}
+#label-connected = | %{A1:nm-connection-editor:}%  %downspeed%{A}
+
+format-connected-background = ${colors.background-alt}
+format-disconnected-background = ${colors.background-alt}
+label-connected-foreground = ${colors.foreground}
 
 format-connected-padding = 0
 format-disconnected-padding = 0
@@ -253,8 +250,6 @@ label-connected-padding-right = 1
 label-disconnected-padding-right = 1
 #label-connected-padding-right = 
 
-label-connected = | %{A1:nm-connection-editor:}  %downspeed%%{A}
-#label-connected = | %{A1:nm-connection-editor:}%  %downspeed%{A}
 
 ## wifi/down and up speed ##
 
@@ -265,18 +260,21 @@ interval = 1
 
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
-format-connected-background = #141a1b
-format-disconnected-background = #141a1b
-format-connected-padding = 0
-label-disconnected-padding = 0
-
-label-connected-padding-right = 1
-label-disconnected-padding-right = 1
 label-connected = | %{A1:nm-connection-editor:}  %downspeed%%{A}
 label-disconnected = | %{A1:nm-connection-editor:}睊  %downspeed%%{A}
+
+format-connected-background = ${colors.background-alt}
+format-disconnected-background = ${colors.background-alt}
+label-connected-foreground = ${colors.foreground}
+label-disconnected-foreground = ${colors.foreground}
+
+format-connected-padding = 0
+label-disconnected-padding = 0
+label-connected-padding-right = 1
+label-disconnected-padding-right = 1
+
 #label-connected = | %{A1:nm-connection-editor:}  %downspeed% %upspeed%%{A}
 #label-connected = | %{A1:nm-connection-editor:}   %downspeed%  %upspeed%%{A}
-
 
 ## Pacman and Aur Updates ##
 
@@ -286,17 +284,18 @@ exec = ~/.config/polybar/scripts/check-all-updates.sh
 interval = 34000
 label = %{A1:alacritty -e ~/Public/scripts/pkg:} :%output%%{A}
 label-padding = 1
-format-foreground = #DEDDDA
-format-background = #141a1b
+format-foreground = ${colors.foreground}
+format-background = ${colors.background-alt}
+format-prefix-foreground = ${colors.foreground}
 #format-prefix = "  "
-format-prefix-foreground = #DEDDDA
 
 ## Weather-better ##
 
 [module/simple-weather]
 type = custom/script
 exec = ~/.config/polybar/scripts/simple-weather.sh
-format-background = #141a1b
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
 interval = 3600
 label-padding = 1
 #label-font = 3
@@ -306,7 +305,8 @@ label-padding = 1
 [module/search]
 type = custom/script 
 exec = echo []=
-format-background = #141a1b
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
 click-left = ~/.config/polybar/scripts/search.sh
 
 #  
